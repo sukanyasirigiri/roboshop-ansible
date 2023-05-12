@@ -20,5 +20,5 @@
     name: "{{ component }}"    
     state: restarted
     enabled: true
-    demon_reload: true
+    daemon_reload: true
 
