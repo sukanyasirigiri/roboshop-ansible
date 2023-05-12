@@ -1,33 +1,17 @@
-#if [ "$schema_setup" == "mongo" ]; then
-#print_head "copy mongodb repo"
-#cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
-#func_stat_check $?
-
-#print_head "install mongodb client"
-#yum install mongodb-org-shell -y &>>$log_file
-#func_stat_check $?
-
-
-#print_head "load schema"
-#mongo --host mongodb.devops1722.com </app/schema/${component}.js &>>$log_file
-#func_stat_check $? 
-#fi
-
-
-- name: copy mongodb repo
-  ansible.builtin.copy: 
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
+- name: Load MongoDB Schema
   when: schema_setup == "mongo"  
+ 3 ansible.builtin.block: 
+    - name: copy mongodb repo
+      ansible.builtin.copy: 
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+      
+    - name: install mongodb client
+      ansible.builtin.yum: 
+        name: mongodb-org-shell
+        state: installed
+      
 
-- name: install mongodb client
-  ansible.builtin.yum: 
-    name: mongodb-org-shell
-    state: installed
-  when: schema_setup == "mongo"  
-   
-
-- name: Load schema
-  ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongo_endpoint', region='us-east-1') }} </app/schema/{{component}}.js  
-  when: schema_setup == "mongo"  
-   
+    - name: Load schema
+      ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongo_endpoint', region='us-east-1') }} </app/schema/{{component}}.js  
+      
