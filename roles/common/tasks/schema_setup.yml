@@ -12,3 +12,22 @@
 #mongo --host mongodb.devops1722.com </app/schema/${component}.js &>>$log_file
 #func_stat_check $? 
 #fi
+
+
+- name: copy mongodb repo
+  ansible.builtin.copy: 
+    src: mongo repo
+    dest: /etc/yum.repos.d/mongo.repo
+  when: schema_setup == "mongo"  
+
+- name: install mongodb client
+  ansible.builtin.yum: 
+    name: mongodb-org-shell
+    state: installed
+  when: schema_setup == "mongo"  
+   
+
+- name: Load schema
+  ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongo_endpoint', region='us-east-1') }} </app/schema/${component}.js  
+  when: schema_setup == "mongo"  
+   
