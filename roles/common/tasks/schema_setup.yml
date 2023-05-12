@@ -16,7 +16,7 @@
 
 - name: copy mongodb repo
   ansible.builtin.copy: 
-    src: mongo repo
+    src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
   when: schema_setup == "mongo"  
 
