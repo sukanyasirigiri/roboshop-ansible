@@ -8,7 +8,7 @@
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
    
 - name: install nodejs
-  ansible.buitin.yum: 
+  ansible.builtin.yum: 
     name: nodejs
     state: installed
 
@@ -17,6 +17,6 @@
     file: app_prereq.yml 
 
 - name: install nodejs dependencies
-  ansible.buitin.shell: npm install
+  ansible.builtin.shell: npm install
   args:
     chdir: /app
