@@ -4,7 +4,7 @@
 #func_schema_setup
 #func_systemd_setup
 
-- name: configuring nodejs repos
+- name: Configuring nodejs repos
   ansible.buitin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash 
 
 - name: install nodejs
