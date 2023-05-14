@@ -1,9 +1,5 @@
 
 
-
-#func_schema_setup
-#func_systemd_setup
-
 - name: Configuring nodejs repos
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
    
