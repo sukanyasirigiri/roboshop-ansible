@@ -5,13 +5,10 @@
       ansible.builtin.copy: 
         src: mongo.repo
         dest: /etc/yum.repos.d/mongo.repo
-      
     - name: install mongodb client
       ansible.builtin.yum: 
         name: mongodb-org-shell
         state: installed
-      
-
     - name: Load schema
       ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongo_endpoint', region='us-east-1') }} </app/schema/{{component}}.js  
       
