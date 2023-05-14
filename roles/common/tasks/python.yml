@@ -1,9 +1,4 @@
- #print_head "install Python"
-#yum install python36 gcc python3-devel -y &>>$log_file
-#func_stat_check $?
-
-#func_app_prereq
-
+ 
 
 
 
