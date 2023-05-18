@@ -1,7 +1,4 @@
 
-  
-
-
 - name: Install Nginx 
   ansible.builtin.yum:
     name: nginx
@@ -12,6 +9,12 @@
   ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
+
+- name: copy nginx config file
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 
 
 - name: Clen old app content
