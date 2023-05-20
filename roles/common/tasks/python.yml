@@ -18,7 +18,7 @@
     file: app_prereq.yml 
 
 - name: install python dependencies    
-   ansible.buitin.shell: pip3.6 install -r requirements.txt
+  ansible.buitin.shell: pip3.6 install -r requirements.txt
     args:
     chdir: /app
 
