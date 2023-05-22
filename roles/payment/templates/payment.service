@@ -10,7 +10,7 @@ Environment=USER_HOST={{ lookup('aws_ssm', '{{ env }}.payment.user_host', region
 Environment=USER_PORT={{ lookup('aws_ssm', '{{ env }}.payment.user_port', region='us-east-1') }}
 Environment=AMQP_HOST=r{{ lookup('aws_ssm', '{{ env }}.payment.amqp_host', region='us-east-1') }}
 Environment=AMQP_USER={{ lookup('aws_ssm', '{{ env }}.payment.amqp_user', region='us-east-1') }}
-Environment=AMQP_PASS={{ lookup('aws_ssm', '{{ env }}.paymentamqp_pass', region='us-east-1') }}
+Environment=AMQP_PASS={{ lookup('aws_ssm', '{{ env }}.payment.amqp_pass', region='us-east-1') }}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
