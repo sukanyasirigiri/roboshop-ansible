@@ -32,7 +32,7 @@ scrape_configs:
             values: [ "true" ]
 
     relabel_configs:
-      - source_labels: [ _meta_ec2_tag_Name ]
+      - source_labels: [ __meta_ec2_tag_Name ]
         target_label: name         
       
 
