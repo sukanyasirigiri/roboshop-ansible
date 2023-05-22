@@ -30,5 +30,9 @@ scrape_configs:
         filters:
           - name: tag:Monitor
             values: [ "true" ]
+
+    relable_configs:
+      - source_labels: [ _meta_ec2_tag_Name ]
+        target_label: name         
       
 
