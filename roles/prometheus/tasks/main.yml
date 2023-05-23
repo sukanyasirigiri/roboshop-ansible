@@ -5,8 +5,7 @@
     
     loop:
       - prometheus
-      - alerts
-
+      - alerts      
 - name: restart prometheus
   ansible.builtin.systemd:
     name: prometheus
